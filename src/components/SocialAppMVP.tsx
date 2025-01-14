@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { FaThumbsUp, FaPaperPlane, FaUserPlus, FaTimesCircle, FaComment } from 'react-icons/fa';
+import { FaThumbsUp, FaPaperPlane, FaTimesCircle, FaComment } from 'react-icons/fa';
 
 // Notification Toast Component
 const NotificationToast = ({ message, onClose }: { message: string, onClose: () => void }) => {
@@ -67,7 +67,7 @@ const ChatWindow = ({ isOpen, onClose, selectedUser, messages, onSendMessage }) 
 // Main Social App MVP Component
 const SocialAppMVP = () => {
   const [activeTab, setActiveTab] = useState('profile');
-  const [userProfile, setUserProfile] = useState({
+  const [userProfile] = useState({
     name: 'Vivek Kumar',
     interests: ['Technology', 'Music', 'Travel'],
     location: 'Gurugram, India',
@@ -110,14 +110,14 @@ const SocialAppMVP = () => {
     }
   ]);
 
-  const [notifications, setNotifications] = useState([]);
+  //const [notifications, setNotifications] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [eventFilter, setEventFilter] = useState('all');
+  const [eventFilter] = useState('all');
   const [userMood, setUserMood] = useState('😊');
   const [postContent, setPostContent] = useState('');
   const [posts, setPosts] = useState([
