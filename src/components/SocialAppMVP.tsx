@@ -186,17 +186,46 @@ const SocialAppMVP = () => {
     }
   };
 
-  const handleLikePost = (postId) => {
-    setPosts(posts.map(post => post.id === postId ? { ...post, likes: post.likes + 1 } : post));
+
+interface Post {
+  id: number;
+  likes: number;
+  // Other properties of a post can go here (e.g., content, author, etc.)
+}
+
+const MyComponent: React.FC = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  const handleLikePost = (postId: number) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post.id === postId ? { ...post, likes: post.likes + 1 } : post
+      )
+    );
   };
 
-  const toggleEventAttendance = (index) => {
+  return (
+    <div>
+      {posts.map((post) => (
+        <div key={post.id}>
+          <p>{`Post ${post.id}: Likes ${post.likes}`}</p>
+          <button onClick={() => handleLikePost(post.id)}>Like</button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+
+  
+
+  const toggleEventAttendance = (index: number) => {
     const updatedEvents = [...upcomingEvents];
     updatedEvents[index].isAttending = !updatedEvents[index].isAttending;
     setUpcomingEvents(updatedEvents);
   };
 
-  const toggleConnection = (index) => {
+  const toggleConnection = (index: number) => {
     const updatedUsers = [...nearbyUsers];
     updatedUsers[index].connected = !updatedUsers[index].connected;
     setNearbyUsers(updatedUsers);
