@@ -14,8 +14,29 @@ const NotificationToast = ({ message, onClose }: { message: string, onClose: () 
 );
 };
 
-// Chat Window Component
-const ChatWindow = ({ isOpen, onClose, selectedUser, messages, onSendMessage }) => {
+
+
+
+interface Message {
+  sender: 'me' | 'other'; // Adjust sender type based on your app
+  content: string;
+}
+
+interface ChatWindowProps {
+  isOpen: boolean;
+  onClose: () => void;
+  selectedUser: { name: string }; // Adjust the type as per your actual structure
+  messages: Message[];
+  onSendMessage: (message: string) => void;
+}
+
+const ChatWindow: React.FC<ChatWindowProps> = ({
+  isOpen,
+  onClose,
+  selectedUser,
+  messages,
+  onSendMessage,
+}) => {
   const [messageContent, setMessageContent] = useState('');
 
   const handleSendMessage = () => {
@@ -63,6 +84,8 @@ const ChatWindow = ({ isOpen, onClose, selectedUser, messages, onSendMessage }) 
     </div>
   );
 };
+
+
 
 // Main Social App MVP Component
 const SocialAppMVP = () => {
@@ -117,7 +140,7 @@ const SocialAppMVP = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [eventFilter] = useState('all');
+  const [eventFilter,] = useState('all');
   const [userMood, setUserMood] = useState('😊');
   const [postContent, setPostContent] = useState('');
   const [posts, setPosts] = useState([
