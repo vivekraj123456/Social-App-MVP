@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { FaThumbsUp, FaPaperPlane, FaUserPlus, FaTimesCircle, FaComment } from 'react-icons/fa';
 
 // Notification Toast Component
-const NotificationToast = ({ message, onClose }) => (
+const NotificationToast = ({ message, onClose }: { message: string, onClose: () => void }) => {
+  return(
   <div className="fixed bottom-4 right-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg shadow-xl flex items-center gap-3 transform transition-all duration-300 ease-in-out hover:scale-105">
     <span className="font-medium">{message}</span>
     <button onClick={onClose} className="text-white hover:text-gray-300 transition-all duration-200">
@@ -11,6 +12,7 @@ const NotificationToast = ({ message, onClose }) => (
     </button>
   </div>
 );
+};
 
 // Chat Window Component
 const ChatWindow = ({ isOpen, onClose, selectedUser, messages, onSendMessage }) => {
