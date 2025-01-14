@@ -3,11 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { FaThumbsUp, FaPaperPlane, FaTimesCircle, FaComment } from 'react-icons/fa';
 import { UserType } from '../../types';  // Adjust the import path as needed
 
-const user: UserType = {
-  id: 1,
-  name: 'Jane Doe',
-  email: 'jane@example.com',
-};
+
+
 
 
 // Notification Toast Component
@@ -126,8 +123,11 @@ const SocialAppMVP = () => {
     }
   ]);
 
+  
+
   const [nearbyUsers, setNearbyUsers] = useState([
     {
+
       name: 'Rohan',
       distance: '0.5 miles',
       sharedInterests: ['Technology', 'Music'],
@@ -422,8 +422,9 @@ const MyComponent: React.FC = () => {
                   >
                     {user.connected ? 'Disconnect' : 'Connect'}
                   </button>
+                  
                   <button
-                    onClick={() => openChatWindow(user)}
+                    //onClick={() => openChatWindow(user)}
                     className="px-6 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg"
                   >
                     Chat
