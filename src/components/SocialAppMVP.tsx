@@ -231,7 +231,7 @@ const MyComponent: React.FC = () => {
     setNearbyUsers(updatedUsers);
   };
 
-  const openChatWindow = (user) => {
+  const openChatWindow = (user: UserType) => {
     setSelectedUser(user);
     setIsChatOpen(true);
     setMessages([]); // Optionally reset messages when opening a new chat
