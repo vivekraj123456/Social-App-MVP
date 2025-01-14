@@ -1,6 +1,14 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { FaThumbsUp, FaPaperPlane, FaTimesCircle, FaComment } from 'react-icons/fa';
+import { UserType } from './types';  // Adjust the import path as needed
+
+const user: UserType = {
+  id: 1,
+  name: 'Jane Doe',
+  email: 'jane@example.com',
+};
+
 
 // Notification Toast Component
 const NotificationToast = ({ message, onClose }: { message: string, onClose: () => void }) => {
