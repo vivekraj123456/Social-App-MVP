@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { FaThumbsUp, FaPaperPlane, FaTimesCircle, FaComment } from 'react-icons/fa';
-import { UserType } from './types';  // Adjust the import path as needed
+import { UserType } from '../../types';  // Adjust the import path as needed
 
 const user: UserType = {
   id: 1,
@@ -33,7 +33,7 @@ interface Message {
 interface ChatWindowProps {
   isOpen: boolean;
   onClose: () => void;
-  selectedUser: { name: string }; // Adjust the type as per your actual structure
+  selectedUser: { name: string } | null; // Adjust the type as per your actual structure
   messages: Message[];
   onSendMessage: (message: string) => void;
 }
@@ -145,8 +145,8 @@ const SocialAppMVP = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [messages, setMessages] = useState([]);
+  const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
+  const [messages, setMessages] = useState<NewMessage[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [eventFilter,] = useState('all');
   const [userMood, setUserMood] = useState('😊');
@@ -250,9 +250,14 @@ const MyComponent: React.FC = () => {
     setSelectedUser(null);
   };
 
-  const sendMessage = (messageContent) => {
+  interface NewMessage {
+    sender: 'me' | 'other';
+    content: string;
+  }
+
+  const sendMessage = (messageContent: string) => {
     if (messageContent.trim()) {
-      const newMessage = {
+      const newMessage: NewMessage = {
         sender: 'me',
         content: messageContent
       };
@@ -272,6 +277,14 @@ const MyComponent: React.FC = () => {
       interest.toLowerCase().includes(searchQuery.toLowerCase())
     )
   );
+
+  const handleLikePost = (postId: number) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post.id === postId ? { ...post, likes: post.likes + 1 } : post
+      )
+    );
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-gray-50 min-h-screen">
