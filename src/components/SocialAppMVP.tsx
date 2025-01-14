@@ -165,7 +165,7 @@ const SocialAppMVP = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const showToast = (message) => {
+  const showToast = (message: string) => {
     setNotificationMessage(message);
     setShowNotification(true);
     setTimeout(() => setShowNotification(false), 3000);
